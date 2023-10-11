@@ -11,6 +11,7 @@ output:
 Debes resolver el ejercicio siguiente con control de versiones:  
 
 Considera los conjuntos de datos **mammals** del paquete **MASS** y **Animals2** del paquete **robustbase**.  
+
 * Mira la las características de ambos conjuntos usando la ayuda.  
 
 ```{r}
@@ -37,6 +38,28 @@ str(y)
 ```
 
 * Muestra los nombres de las filas y las columnas (**rownames**, **colnames**)  
-* Usa la función **intersect** y almacena en la variable commonAnimals los aminales que aparezcan en ambos conjuntos  
-* Usa **setdiff**2 para averiguar qué animales no están en ambos conjuntos. ¿Cuántos son? ¿Qué tipo de animales son?  
-* Determina las diferencia entre los animales que no aparecen en ambos conjuntos.  
+
+```{r}
+rownames(x)
+colnames(x)
+rownames(y)
+colnames(y)
+```
+
+* Usa la función **intersect** y almacena en la variable commo nAnimals los animales que aparezcan en ambos conjuntos.  
+```{r}
+nAnimals <- intersect(rownames(x),rownames(y))
+print(nAnimals)
+```
+
+* Usa **setdiff**2 para averiguar qué animales no están en ambos conjuntos. ¿Cuántos son? ¿Qué tipo de animales son? Determina las diferencia entre los animales que no aparecen en ambos conjuntos.
+```{r}
+animales_mammals_no_comunes <- setdiff(rownames(mammals), rownames(Animals2))
+animales_Animals2_no_comunes <- setdiff(rownames(Animals2), rownames(mammals))
+
+anim_no_comunes <- length(animales_mammals_no_comunes) + length(animales_Animals2_no_comunes)
+
+print(animales_mammals_no_comunes)
+print(animales_Animals2_no_comunes)
+print(paste0("Número de animales que no están en ambos conjuntos: ", anim_no_comunes))
+```
